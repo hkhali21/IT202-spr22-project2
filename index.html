@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+     
+  <canvas></canvas>
+   
+
+  <script>
+
+    
+     let spriteHeight;
+      let spriteWidth;
+  
+     var imgPlayer = new Image();
+      imgPlayer.src = 'spritestrip.png';
+
+      let canv = document.querySelector("canvas");
+      //canv.style.backgroundColor = 'silver';
+      canv.width = 600;
+      canv.height = 600;
+
+      // for background
+      // create an image element
+   
+
+    
+    
+    
+    let contxt = canv.getContext("2d");
+
+    imgPlayer.addEventListener("load", (event) => {
+      spriteHeight = imgPlayer.height;
+    spriteWidth = spriteHeight;
+
+    contxt.drawImage(imgPlayer, 0, 0, spriteWidth, spriteHeight, 0, 50, spriteWidth, spriteHeight);
+
+     contxt.drawImage(imgPlayer, spriteWidth*1, 0, spriteWidth, spriteHeight, 300, 50, spriteWidth, spriteHeight);
+
+      console.log("image done");
+      draw();
+    })
+    
+
+    let numOfImg = 6;
+    let currImage = 0;
+    let frame = 0;
+
+    let draw = () => {
+
+          // clear the canvas
+      contxt.clearRect(0,0,canv.width, canv.height);
+      
+      // do calculations on currImage
+      frame += 1;
+    
+
+      // render and changing image every 10 time
+      if (frame % 10 == 0) {
+     
+
+          if (currImage == 5) {
+        currImage = 0;
+      } else {
+        currImage +=1;
+      }
+         
+      }
+      
+     contxt.drawImage(imgPlayer, spriteWidth*currImage, 0, spriteWidth, spriteHeight, 50, 50, spriteWidth, spriteHeight);
+
+      // continue animation movement
+      window.requestAnimationFrame(draw);
+    }
+   
+  </script>
+</body>
+
+</html>
